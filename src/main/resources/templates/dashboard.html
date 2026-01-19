@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Secure App</title>
+    <style>
+        /* Shared Animated Gradient Background */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card */
+        .dashboard-container { 
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
+            width: 550px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { 
+            color: #333; 
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        p.welcome-text {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Clean Modern Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background-color: #23a6d5;
+            color: white;
+            padding: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: #444;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Modern Logout Button */
+        .logout-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #dc3545; /* Crimson alternative */
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="user-avatar">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User" width="60">
+    </div>
+
+    <h1>Welcome, <span th:text="${user.name}">User</span>!</h1>
+    <p class="welcome-text">Here is your account overview.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${user.name}">Name</td>
+                <td th:text="${user.email}">Email</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+</body>
+</html>

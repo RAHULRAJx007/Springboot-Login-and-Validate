@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            text-align: center;
+            padding: 50px;
+        }
+        .card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+        h1 {
+            color: #28a745;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+          
+        <h2>Registration successful!</h2>
+		<p>Please check your email for OTP or verification link.</p>
+		
+		<a href="/otp">Verify using OTP</a><br>
+		<a href="/login">Login (after verification)</a>
+
+    </div>
+</body>
+</html>

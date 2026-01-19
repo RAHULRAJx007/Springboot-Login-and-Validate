@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Signup</title>
+</head>
+<body>
+<form th:action="@{/signup}" method="post" th:object="${user}" >
+       Email: <input type="text" id="email" th:field="*{email}"/><br><br>
+    
+    Name: <input type="text"  id="name" th:field="*{name}"/><br><br>
+ 
+    Password: <input type="text"  id="password" th:field="*{password}"/><br><br>
+    
+	<select th:field="*{country.cid}" id="country">
+	    <option value="">Select Country</option>
+	    <option th:each="c : ${countryList}"
+	            th:value="${c.cid}"
+	            th:text="${c.name}">
+	    </option>
+	</select><br><br>
+	
+	<select th:field="*{state.sid}" id="state">
+	    <option value="">Select State</option>
+	</select><br><br>
+    
+    <input type="submit" value="Sign Up"/>
+</form><br>
+<a th:href="@{/login}">Login</a>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function () {
+	$('#country').change(function () {
+	    var cid = $(this).val();
+
+	    $('#state').empty().append('<option value="">Select State</option>');
+
+	    if (cid) {
+	        $.get('/states/' + cid, function (data) {
+	            $.each(data, function (i, state) {
+	                $('#state').append(
+	                    '<option value="' + state.sid + '">' + state.sname + '</option>'
+	                );
+	            });
+	        });
+	    }
+	});
+});
+</script>
+
+
+</body>
+</html>
